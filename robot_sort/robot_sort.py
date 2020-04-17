@@ -92,12 +92,52 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+    #set light on to keep it Truthy
+    #while it is truthy
+        #set the light off
+        #check if the robot can move to the right
+        #if it can
+            #move right
+            #compare
+                #if what it has is less then swap the item
+                #set light on to reset
+        #if it cannot move right (not truthy)
+            #check if it can move left
+                #if it can
+                    #move left
+                    #compare item
+                    #if the item is lower ==> swap
+                    #if not set the light on
+    
     def sort(self):
-        """
-        Sort the robot's list.
-        """
-        # Fill this out
-        pass
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off()
+            self.can_move_right()
+            if self.can_move_right():
+                self.swap_item()
+                self.move_right()
+                if (self.compare_item() == 1):
+                    self.swap_item()
+                    self.set_light_on()
+                else:
+                    self.swap_item()
+                    self.set_light_on()
+                    
+            else:
+                self.can_move_left()
+                if self.can_move_left() :
+                    self.move_left()
+                    if self.compare_item() == -1 or 0:
+                        self.swap_item()
+                        self.set_light_on()
+                    else:
+                        self.swap_item()
+                        self.set_light_on()
+                
+
+                        
+        return self._list
 
 
 if __name__ == "__main__":
